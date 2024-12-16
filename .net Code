@@ -1,0 +1,40 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+
+var app = WebApplication.CreateBuilder(args).Build();
+
+// Home page route
+app.MapGet("/", async context =>
+{
+    await context.Response.WriteAsync("<h1>Welcome to My Website</h1>" +
+                                      "<p>This is the home page.</p>" +
+                                      "<nav>" +
+                                      "<a href='/about'>About</a> | " +
+                                      "<a href='/contact'>Contact</a>" +
+                                      "</nav>");
+});
+
+// About page route
+app.MapGet("/about", async context =>
+{
+    await context.Response.WriteAsync("<h1>About Us</h1>" +
+                                      "<p>This is a simple ASP.NET Core application.</p>" +
+                                      "<nav>" +
+                                      "<a href='/'>Home</a> | " +
+                                      "<a href='/contact'>Contact</a>" +
+                                      "</nav>");
+});
+
+// Contact page route
+app.MapGet("/contact", async context =>
+{
+    await context.Response.WriteAsync("<h1>Contact Us</h1>" +
+                                      "<p>Email us at: contact@example.com</p>" +
+                                      "<nav>" +
+                                      "<a href='/'>Home</a> | " +
+                                      "<a href='/about'>About</a>" +
+                                      "</nav>");
+});
+
+// Run the application
+app.Run();
